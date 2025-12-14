@@ -7,16 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Company;
+use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable, HasRoles;
 
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return str_ends_with($this->email, 'https://euadit.kadinrembang.com') && $this->hasVerifiedEmail();
-    }   
-
+   
     protected $guard_name = 'web';
 
     protected $fillable = [
@@ -49,4 +46,10 @@ class User extends Authenticatable
 {
     return $this->hasRole('super_admin');
 }
+
+public function canAccessPanel(Panel $panel): bool
+{
+    return true;
+}   
+
 }
