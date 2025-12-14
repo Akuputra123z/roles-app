@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        return str_ends_with($this->email, 'https://euadit.kadinrembang.com') && $this->hasVerifiedEmail();
     }   
 
     protected $guard_name = 'web';
